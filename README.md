@@ -4,3 +4,9 @@
 ### 下载项目git clone git@github.com:YesIsLast/fastvue.git
 ### 安装项目依赖 npm install
 ### 运行项目 npm run serve
+
+## 项目组成
+    vue 2.6+
+    vue-router
+    vuex
+    eslint
