@@ -9,6 +9,11 @@ const firstmenuComponent = resolve => require(['@/views/firstmenuComponent/first
 import secondmenuRouters from './router/secondmenu/index' // 相关子路由
 const secondmenuComponent = resolve => require(['@/views/secondmenuComponent/secondmenuComponent.vue'], resolve)
 
+import homepage from './views/Home/homePage.vue'
+import main from './views/main.vue'
+import firstMenuFirstChildComponent from './views/firstmenuComponent/firstMenuFirstChildComponent/firstMenuFirstChildComponent.vue'
+import Page_404 from './views/ERR_Pages/Page_404.vue'
+
 // 全局注册vue-router
 Vue.use(VueRouter)
 
@@ -18,42 +23,55 @@ const routes = [
     path: '/', redirect: '/login'
   },
   {
-    path: '/login',
-    name: 'login',
-    component: logincomponent
+    path: '*', component: Page_404
   },
   // 使用箭头符号来对组件进行注册，免去上方引入
   {
     path: '/main',
     name: 'main',
-    component: () => import('./views/main.vue'),
-      // 使用路由集合
-      children: [
-        {
-          path: '/',
-          redirect: '/login' // 默认配置成重定向第一个菜单
-        },
-        {
-          path: '/firstmenuComponent',
-          name: 'firstmenuComponent',
-          component: firstmenuComponent,
-          meta: { title: '第一菜单栏' },
-          children: [
-            ...firstmenuRouters
-          ]
-        },
-        {
-          path: '/secondmenuComponent',
-          name: 'secondmenuComponent',
-          component: secondmenuComponent,
-          meta: { title: '第二菜单栏' },
-          children: [
-            ...secondmenuRouters
-          ]
-        }
-      ]
-    }
-  ]
+    component: main,
+    // 使用路由集合
+    children: [
+      {
+        path: '/',
+        redirect: '/login' // 默认配置成重定向登录页
+      },
+      // 当 /main/firstmenuComponent 匹配成功，
+      // firstmenuComponent 会被渲染在 main 的 <router-view> 中
+      {
+        path: 'firstmenuComponent',
+        name: 'firstmenuComponent',
+        component: firstmenuComponent,
+        meta: { title: '第一菜单栏' },
+        children: [
+          ...firstmenuRouters
+        ]
+      },
+      {
+        path: 'secondmenuComponent',
+        name: 'secondmenuComponent',
+        component: secondmenuComponent,
+        meta: { title: '第二菜单栏' },
+        children: [
+          ...secondmenuRouters
+        ]
+      }
+    ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: logincomponent
+  },
+  {
+    path: '/homePage',
+    name: 'homepage',
+    component: homepage,
+  },
+  {
+    path: '/404', name: 'Page_404-404', component: Page_404
+  },
+]
 
 
 // 3. 创建 router 实例，然后传 `routes` 配置

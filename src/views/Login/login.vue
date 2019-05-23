@@ -17,8 +17,8 @@ export default {
     },
     methods:{
         nextPage(){
-            alert('即将去往首页页面');   
-            this.$router.push({name:'homePage'})
+            alert('即将去往首页页面');
+            this.$router.push({name:'homepage'})
         }
     }
 }
