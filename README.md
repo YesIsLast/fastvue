@@ -10,3 +10,4 @@
     vue-router
     vuex
     eslint
+    vue-progressbar VUE顶部加载轻量级动画https://github.com/hilongjw/vue-progressbar

@@ -18,7 +18,7 @@ export default {
       return {
         key: ''
       }
-    },
+    }
 };
 </script>
 <style>
