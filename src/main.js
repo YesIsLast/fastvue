@@ -8,6 +8,11 @@ import Components from './components/index' // 公用组件封装库
 
 // 全局注册组件
 Vue.use(Components)
+// 定义全局键盘事件
+Vue.config.keyCodes = {
+  "enter": 13
+}
+
 // 定义常量配置VueProgressBar所需要参数配置
 const options = {
   color: '#3eb1fc',

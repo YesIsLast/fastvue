@@ -12,6 +12,7 @@ export default {
     //  [App.vue specific] When App.vue is finish loading finish the progress bar
     this.$Progress.finish()
   },
+  // 页面跳转过渡动画
   created () {
     //  [App.vue specific] When App.vue is first loaded start the progress bar
     this.$Progress.start()

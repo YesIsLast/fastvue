@@ -4,31 +4,47 @@ import axios from 'axios'
  */
 
 // 创建一个AXIOS实例的常量，禁止发生改变
-var axiosService = axios.create({
-    // axios请求地址
-    // baseURL: 'http://39.96.89.11:8080/springbootd2/',
-    baseURL: '',
-    // axios请求超时
-    timeout: 5000
+
+// Set config defaults when creating the instance
+// 创建自定义axios实例
+const axiosService = axios.create({
+    // `baseURL` will be prepended to `url` unless `url` is absolute.
+    // It can be convenient to set `baseURL` for an instance of axios to pass relative URLs
+    // to methods of that instance.
+    baseURL: 'http://localhost:8001',// 默认请求地址
+    // `timeout` specifies the number of milliseconds before the request times out.
+    // If the request takes longer than `timeout`, the request will be aborted.
+    timeout: 1000, // default is `0` (no timeout)
+    // `responseType` indicates the type of data that the server will respond with
+    // options are 'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
+    responseType: 'json', // default
+    // `responseEncoding` indicates encoding to use for decoding responses
+    // Note: Ignored for `responseType` of 'stream' or client-side requests
+    responseEncoding: 'utf8', // default
 });
 
-// 添加请求拦截器
+// Add a request interceptor
+// 请求拦截器
 axiosService.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
+    // Do something before request is sent
     config.headers['Content-Type'] = 'application/json'
     config.headers['Access-Control-Allow-Origin'] = '*'
     return config;
 }, function (error) {
-    // 对请求错误做些什么
+    // Do something with request error
+    // 请求失败处理
     return Promise.reject(error);
 });
 
-// 添加响应拦截器
+// Add a response interceptor
+// 响应拦截器
 axiosService.interceptors.response.use(function (response) {
-    // 对响应数据做点什么
+    // Do something with response data
     return response;
 }, function (error) {
-    // 对响应错误做点什么
+    // 响应失败处理
+    // Do something with response error
     return Promise.reject(error);
 });
+
 export default axiosService
