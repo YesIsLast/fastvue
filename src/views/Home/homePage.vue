@@ -25,7 +25,8 @@ export default {
         }
     },
     methods:{
-        sendGet(){
+        sendGet(){ 
+            // 查看差异
             let url = '/login/secondChildSsmExampleTable';
             let params = {exampleid: this.dataId};
         // 开始执行请求
