@@ -11,3 +11,13 @@
     vuex
     eslint
     vue-progressbar VUE顶部加载轻量级动画https://github.com/hilongjw/vue-progressbar
+## VSCode开发工具使用
+    
+```js
+    let ff = 3;
+    if(ff != 3){
+            console.log('ff不等于3')
+    }else{
+        console.log('报错信息')
+    }
+```
