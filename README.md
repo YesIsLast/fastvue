@@ -9,7 +9,7 @@
     vue 2.6+
     vue-router
     vuex
-    eslint
+    eslint  如果想取消eslint只需要将eslint包依赖删掉重新npm install安装依赖就好
     vue-progressbar VUE顶部加载轻量级动画https://github.com/hilongjw/vue-progressbar
 ## VSCode开发工具使用
     断点调试使用Debugger for Chrome插件

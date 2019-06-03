@@ -10,7 +10,7 @@
     </div>
 </template>
 <script>
-import {GetUrlHttp} from '../../components/apiRequest/api'
+import {GetUrlHttp} from '../../publicmethods/apiRequest/api'
 
 export default {
     name:"homePage",
