@@ -35,6 +35,7 @@ export default {
             this.respMessage = resp
         }).catch(err => {
             alert('发送GET请求出错函数sendGet')
+            console.log(err)
         })
         }
 
