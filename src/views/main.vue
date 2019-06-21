@@ -1,6 +1,5 @@
 <template>
     <div id="Appmain">
-        <h2>/main/firstmenuComponent 匹配成功，进入main界面路由第二次渲染</h2>
         <router-view :key="key"></router-view>
     </div>
 </template>

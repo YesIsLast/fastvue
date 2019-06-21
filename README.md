@@ -10,7 +10,7 @@
     vue-router
     vuex
     eslint  如果想取消eslint只需要将eslint配置文件.eslintrc.js中注释掉或删掉 '@vue/standard'
-    vue-progressbar VUE顶部加载轻量级动画https://github.com/hilongjw/vue-progressbar
+    vue-progressbar VUE顶部加载轻量级动画https://github.com/hilongjw/vue-progressbar    npm install vue-progressbar
     阿里Ant Design Vue UI组件库1.3.10           npm install ant-design-vue --save
 ## VSCode开发工具使用
     git 的使用
@@ -24,3 +24,7 @@
 ## 断点调试
     断点调试使用Debugger for Chrome插件
     配置可查看vue.config.js和babel.config.js
+## 功能点笔记
+### 进度条增加阴影效果
+    使用class在使用的位置进行样式覆盖
+    box-shadow:2px 2px 6px #3eb1fc;

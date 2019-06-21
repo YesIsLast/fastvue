@@ -1,8 +1,7 @@
 <template>
     <div id="app">
-    <!-- 顶部进度条 -->
-    <vue-progress-bar></vue-progress-bar>
-      <h1>/当前根路由匹配成功，渲染App.vue路由进入第一次渲染</h1>
+    <!-- 顶部进度条 progressbarstyle增加进度条阴影效果-->
+    <vue-progress-bar class="progressbarstyle"></vue-progress-bar>
       <router-view></router-view>
     </div>
 </template>
@@ -37,3 +36,8 @@ export default {
   }
 }
 </script>
+<style>
+.progressbarstyle{
+  box-shadow:2px 2px 6px #3eb1fc;
+}
+</style>

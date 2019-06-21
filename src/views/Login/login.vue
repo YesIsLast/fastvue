@@ -1,26 +1,43 @@
 <template>
-    <div>
-        数据显示：{{ msg }}
-        <br>
-        <input type="text" v-model="msg">
-        <br>
-        <a-button type="primary" v-on:click='nextPage'>登录</a-button>
-    </div>
+  <a-form layout="inline" :form="loginForm" @submit="loginSubmit" id="loginForm">
+    <a-form-item>
+      <a-input placeholder="用户名" v-decorator="[ 'userName',{ rules:[{ required: true, message: '请输入你的用户名!'}]}]">
+          <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/>
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-input type="password" placeholder="密码" @keyup.enter="loginSubmit" v-decorator="['password',{ rules:[{ required: true, message: '请输入你的密码!'}]}]">
+          <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)"/>
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-button type="primary" html-type="submit"> 登录 </a-button>
+    </a-form-item>
+  </a-form>
 </template>
+
 <script>
+
 export default {
-    name:'login',
-    data() {
-        return {
-            msg: "vue的DOM操作"
-        };
+  data(){
+      return{
+        loginForm : this.$form.createForm(this)
+      }
+  },
+  methods: {
+    loginSubmit (event) {
+      event.preventDefault();
+      this.loginForm.validateFields((err, values) => {
+          console.log('当前登录信息如下')
+          console.log(values)
+          this.$router.push({path:'homePage'})
+      });
     },
-    methods:{
-        nextPage(){
-            this.$router.push({name:'homepage'})
-        }
-    }
-}
+  },
+};
 </script>
 <style>
+#loginForm{
+    text-align: center
+}
 </style>
