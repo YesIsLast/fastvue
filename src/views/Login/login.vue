@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import service from '../../service/login/index'
 
 export default {
   data(){
@@ -28,8 +29,11 @@ export default {
     loginSubmit (event) {
       event.preventDefault();
       this.loginForm.validateFields((err, values) => {
-          console.log('当前登录信息如下')
-          console.log(values)
+          service.loginPro(values).then(res =>{
+            console.log('查看当前请求返回值')
+            console.log(res)
+          })
+
           this.$router.push({path:'homePage'})
       });
     },

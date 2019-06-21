@@ -7,11 +7,11 @@ import axios from 'axios' // AJAX请求插件
 
 // Set config defaults when creating the instance
 // 创建自定义axios实例
-const axiosService = axios.create({
+const request = axios.create({
     // `baseURL` will be prepended to `url` unless `url` is absolute.
     // It can be convenient to set `baseURL` for an instance of axios to pass relative URLs
     // to methods of that instance.
-    baseURL: 'http://localhost:8001',// 默认请求地址
+    baseURL: '/api',// 默认请求地址
     // `timeout` specifies the number of milliseconds before the request times out.
     // If the request takes longer than `timeout`, the request will be aborted.
     timeout: 1000, // default is `0` (no timeout)
@@ -25,7 +25,7 @@ const axiosService = axios.create({
 
 // Add a request interceptor
 // 请求拦截器
-axiosService.interceptors.request.use(function (config) {
+request.interceptors.request.use(function (config) {
     // Do something before request is sent
     config.headers['Content-Type'] = 'application/json'
     config.headers['Access-Control-Allow-Origin'] = '*'
@@ -38,7 +38,7 @@ axiosService.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 // 响应拦截器
-axiosService.interceptors.response.use(function (response) {
+request.interceptors.response.use(function (response) {
     // Do something with response data
     return response;
 }, function (error) {
@@ -47,4 +47,24 @@ axiosService.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-export default axiosService
+export default request
+//     {
+//     install: function (Vue) {
+//         Vue.prototype.$request = request;
+//         // 封装get请求
+//         Vue.prototype.$get = function (url, param) {
+//             if (typeof param === 'object' && param != undefined) {
+//                 let config = { method: 'get', url: url, params: param }
+//                 return this.$request(config);
+//             } else {
+//                 let config = { method: 'get', url: url }
+//                 return this.$request(config);
+//             }
+//         }
+//         // 封装post请求
+//         Vue.prototype.$post = function (url, param) {
+//             let config = { method: 'post', url: url, data: param }
+//             return this.$request(config)
+//         }
+//     }
+// }

@@ -10,7 +10,6 @@
     </div>
 </template>
 <script>
-import {GetUrlHttp} from '../../publicmethods/apiRequest/api'
 
 export default {
     name:"homePage",
@@ -25,18 +24,18 @@ export default {
         }
     },
     methods:{
-        sendGet(){ 
+        sendGet(){
             // 查看差异
             let url = '/login/secondChildSsmExampleTable';
             let params = {exampleid: this.dataId};
-        // 开始执行请求
-        GetUrlHttp(url,params).then(resp => {
-            this.showresp = true;
-            this.respMessage = resp
-        }).catch(err => {
-            alert('发送GET请求出错函数sendGet')
-            console.log(err)
-        })
+        // // 开始执行请求
+        // GetUrlHttp(url,params).then(resp => {
+        //     this.showresp = true;
+        //     this.respMessage = resp
+        // }).catch(err => {
+        //     alert('发送GET请求出错函数sendGet')
+        //     console.log(err)
+        // })
         }
 
     },
