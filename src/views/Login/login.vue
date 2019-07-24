@@ -33,9 +33,8 @@ export default {
             console.log('查看当前请求返回值')
             console.log(res)
           })
-
-          this.$router.push({path:'homePage'})
       });
+          this.$router.push({path:"/homePage"})
     },
   },
 };

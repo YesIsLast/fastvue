@@ -7,6 +7,8 @@
         <span v-if="showresp">请求返回值JSON串如下</span>
         <p>{{respMessage}}</p>
         </div>
+        <button @click="first">跳转到第一页面</button>
+        <button @click="second">跳转到第二页面</button>
     </div>
 </template>
 <script>
@@ -36,6 +38,12 @@ export default {
         //     alert('发送GET请求出错函数sendGet')
         //     console.log(err)
         // })
+        },
+        first(){
+            this.$router.push({name:"firstmenuComponent"})
+        },
+        second(){
+            this.$router.push({name:"secondmenuComponent"})
         }
 
     },

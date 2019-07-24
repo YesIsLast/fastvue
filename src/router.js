@@ -13,6 +13,7 @@ import homepage from './views/Home/homePage.vue'
 import main from './views/main.vue'
 import firstMenuFirstChildComponent from './views/firstmenuComponent/firstMenuFirstChildComponent/firstMenuFirstChildComponent.vue'
 import Page_404 from './views/ERR_Pages/Page_404.vue'
+import demoPage from './views/Demo/demo.vue'
 
 // 全局注册vue-router
 Vue.use(VueRouter)
@@ -24,6 +25,24 @@ const routes = [
   },
   {
     path: '*', component: Page_404
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: logincomponent
+  },
+  {
+    path: '/homePage',
+    name: 'homepage',
+    component: homepage,
+  },
+  {
+    path: '/demo',
+    name: 'demo',
+    component: demoPage,
+  },
+  {
+    path: '/404', name: 'Page_404-404', component: Page_404
   },
   // 使用箭头符号来对组件进行注册，免去上方引入
   {
@@ -57,19 +76,6 @@ const routes = [
         ]
       }
     ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: logincomponent
-  },
-  {
-    path: '/homePage',
-    name: 'homepage',
-    component: homepage,
-  },
-  {
-    path: '/404', name: 'Page_404-404', component: Page_404
   },
 ]
 
