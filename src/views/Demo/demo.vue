@@ -9,6 +9,13 @@
         <h1>2.身份证号验证</h1>
         <input type="text" @change="cardValidate" />
         <span id="cardValidate"></span>
+        <h1>3.父子组件沟通</h1>
+        <demoChildComponent ref="demoChildComponent" :fatherInputVal.sync="fatherInputValParam"></demoChildComponent>
+        {{"父组件接收的参数值：" + fatherInputValParam}}
+        <br>
+        <a-button @click="demoChildComponentBtn">点击执行子组件中的方法并接收方法返回值</a-button>
+        <br>
+        {{ "子组件方法返回值：" + this.refdemoChildComponent }}
     </div>
 </template>
 
@@ -16,6 +23,16 @@
 import {IdCardValidate} from '../../lib/validate.js'
 
 export default {
+    name:'demo',
+    watch:{
+        
+    },
+    data(){
+        return {
+            fatherInputValParam:"", // 父子组件沟通的参数值
+            refdemoChildComponent:"" // 子组件方法返回值
+        }
+    },
     methods: {
         imageUpload(filemsg) {
             console.log("查看当前所选中的文件信息");
@@ -33,6 +50,10 @@ export default {
                 document.getElementById("cardValidate").innerHTML = "身份证号码验证成功"
 
             }
+        },
+        // 父子组件沟通
+        demoChildComponentBtn(){
+            this.refdemoChildComponent = this.$refs.demoChildComponent.selectInputVal()
         }
     }
 };
