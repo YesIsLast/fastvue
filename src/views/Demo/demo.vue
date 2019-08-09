@@ -10,7 +10,7 @@
         <input type="text" @change="cardValidate" />
         <span id="cardValidate"></span>
         <h1>3.父子组件沟通</h1>
-        <demoChildComponent ref="demoChildComponent" :fatherInputVal.sync="fatherInputValParam"></demoChildComponent>
+        <demoChildComponent ref="demoChildComponent" :fatherInputVal.sync="fatherInputValParam" @search='childFun'></demoChildComponent>
         {{"父组件接收的参数值：" + fatherInputValParam}}
         <br>
         <a-button @click="demoChildComponentBtn">点击执行子组件中的方法并接收方法返回值</a-button>
@@ -54,7 +54,13 @@ export default {
         // 父子组件沟通
         demoChildComponentBtn(){
             this.refdemoChildComponent = this.$refs.demoChildComponent.selectInputVal()
+        },
+        // 被子组件所调用的方法
+        childFun(childParams){
+            alert("查看当前子组件传过来的参数值")
+            alert(childParams)
         }
+
     }
 };
 </script>

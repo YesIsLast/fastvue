@@ -1,7 +1,8 @@
 <template>
     <div>
         <span>子组件中的输入框(数据实时传输)：</span>
-        <a-input type="text" v-model="inputVal"></a-input>
+        <a-input type="text" v-model="inputVal" placeholder='子组件输入值'></a-input>
+        <a-button @click="clickFather()">调用父组件中的方法</a-button>
     </div>
 </template>
 <script>
@@ -30,6 +31,11 @@ export default {
         selectInputVal(){
             console.log("子组件中方法的返回值为：" + this.inputVal)
             return this.inputVal
+        },
+        clickFather(){
+            let params = "我是一个子组件定义的指令所携带的参数"
+            // 为当前子组件定义个指令并传出参数
+            this.$emit('search',params)
         }
     }
 };
