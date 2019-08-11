@@ -171,7 +171,7 @@ export default {
     margin-top: 100px;
     width: 500px;
     height: 60px;
-    background-color:  #1890ff; 
+    background-color: rgb(106, 159, 255);
     border-radius:30px; /* 设置圆角 */
     font-size: 18px;
     color: #fff;
