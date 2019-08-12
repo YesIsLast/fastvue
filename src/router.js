@@ -32,11 +32,6 @@ const routes = [
     component: logincomponent
   },
   {
-    path: '/homePage',
-    name: 'homepage',
-    component: homepage,
-  },
-  {
     path: '/demo',
     name: 'demo',
     component: demoPage,
@@ -54,6 +49,11 @@ const routes = [
       {
         path: '/',
         redirect: '/login' // 默认配置成重定向登录页
+      },
+      {
+        path: '/homePage',
+        name: 'homepage',
+        component: homepage,
       },
       // 当 /main/firstmenuComponent 匹配成功，
       // firstmenuComponent 会被渲染在 main 的 <router-view> 中

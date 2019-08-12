@@ -3,56 +3,32 @@
     <!-- logo -->
     <div class="logo">
       <img src="../../assets/images/login-logo.png" class="logo-icon">
-      <span class="logo-icon-name">快速构建VUE后台管理框架</span>
+      <span class="logo-icon-name">FastVue后台管理框架</span>
     </div>
-
-
     <div class="login-content">
       <div class="login-content-left">
         <img src="../../assets/images/loginBackground2.png" alt="" class="login-content-left-img">
       </div>
-      
       <div class="login-content-right">
-          <!-- <span class="login-content-right-welcome" style="margin-top:200px"></span> -->
           <div class="login-content-right-welcome">欢迎登录</div>
         <div class="login-form">
           <a-input type="text" placeholder="请输入用户名" v-model="loginForm.userName" class="loginInput"  size="large">
             <a-icon slot="prefix" type="user" class="loginInput-icon" />
             <!-- <a-icon v-if="loginForm.userName" slot="suffix" type="close-circle"/> -->
           </a-input>
+          <div class="loginInput-decorator" v-if="!loginForm.userName">请输入用户名!</div>
           <a-input type="password" placeholder="请输入密码" v-model="loginForm.passWord" class="loginInput" size="large">
             <a-icon slot="prefix" type="lock" class="loginInput-icon"/>
             <!-- <a-icon v-if="loginForm.passWord" slot="suffix" type="close-circle"/> -->
           </a-input>
-
-          <!-- <a-button type="primary" :loading='loginForm.loginStatus' @click="loginBtn" size="large" class="loginBtn">
-            登录
-          </a-button> -->
+          <div class="loginInput-decorator" v-if="!loginForm.passWord">请输入密码!</div>
           <button @click="loginBtn" class="loginBtn">
+            <a-icon type="loading" v-if="loginForm.loginStatus"/>
             登&nbsp;&nbsp;录
           </button>
         </div>
       </div>
-
-
     </div>
-
-
-    <!-- <a-form layout="inline" :form="loginForm" @submit="loginSubmit" id="loginForm">
-        <a-form-item>
-          <a-input placeholder="用户名" v-decorator="[ 'userName',{ rules:[{ required: true, message: '请输入用户名!'}]}]">
-              <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/>
-          </a-input>
-        </a-form-item>
-        <a-form-item>
-          <a-input type="password" placeholder="密码" @keyup.enter="loginSubmit" v-decorator="['password',{ rules:[{ required: true, message: '请输入密码!'}]}]">
-              <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)"/>
-          </a-input>
-        </a-form-item>
-        <a-form-item>
-          <a-button type="primary" html-type="submit"> 登录 </a-button>
-        </a-form-item>
-      </a-form> -->
   </div>
 </template>
 <script>
@@ -61,7 +37,6 @@ import service from '../../service/login/index'
 export default {
   data(){
       return{
-        // loginForm : this.$form.createForm(this)
         loginForm:{
           userName:"",
           passWord:"",
@@ -70,23 +45,15 @@ export default {
       }
   },
   methods: {
-    loginSubmit (event) {
-      event.preventDefault();
-      this.loginForm.validateFields((err, values) => {
-          service.loginPro(values).then(res =>{
-            console.log('查看当前请求返回值')
-            console.log(res)
-          })
-      });
-          this.$router.push({path:"/homePage"})
-    },
     // 登录
     loginBtn(){
       this.loginForm.loginStatus = true;
       setTimeout(fun =>{
+      // 登录成功跳转
+      this.$router.push({path:"/homePage"})
       this.loginForm.loginStatus = false;
       console.log(this.loginForm)
-      }, 3000)
+      }, 1000)
     }
   },
 };
@@ -115,7 +82,8 @@ export default {
     font-family: Cursive;
     font-size:xx-large;
     font-style:oblique;
-    top: 10px
+    top: 10px;
+    color: rgb(255, 255, 255);
   }
   
   .app-login .login-content{
@@ -178,6 +146,21 @@ export default {
     text-align: center;
     border: none;
   }
+  .loginBtn:hover{
+    border: none;
+    background-color: rgb(132, 173, 248);
+  }
+  .loginBtn:focus{
+    outline:0;
+  }
+  .loginInput-icon{
+    margin-top: 50px;
+    margin-left: 87px
+  }
+  .loginInput-decorator{
+    color: rgb(255, 0, 0);
+    text-align: center;
+  }
   /* 重写组件库中的组件样式 */
   .loginInput > .ant-input {
     width: 500px;
@@ -186,6 +169,7 @@ export default {
     border: none; /* 设置无边框 */
     box-shadow: 0 0 0 0 rgb(255, 255, 255);
     outline: none;
+    -webkit-apperance:normal;
     border-color: #878787; 
     border-style: solid; 
     border-top-width: 0px;
@@ -194,27 +178,32 @@ export default {
     border-left-width: 0px;
     border-radius:0px
   }
-  /* .loginInput > .ant-input { */
+  /* 取消浏览器中记住密码后默认的表单填充样式 */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active  {
+      -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
   /* :focus 选择器用于选取获得焦点的元素 */
-  /* .ant-input:focus{
-    border: none;
+  .loginInput >.ant-input:focus{
+    /* border: none;
     box-shadow: 0 0 0 0 rgb(255, 255, 255);
-    outline: none;
-    border-color: #878787; 
-    border-style: solid; 
+    outline: 0;
+    border:0px solid #ffffff;
+    border-color:  rgb(0, 0, 0);
+    border-style: solid;
     border-right-width: 0px;
     border-top-width: 0px;
     border-bottom-width: 1px;
-    border-left-width: 0px;
-  } */
+    border-left-width: 0px; */
+  }
   /* 设置鼠标移入到输入框上的样式 */
-  /* .ant-input:hover{
-    border: none;
-    border-right-color: rgb(0, 0, 0);
+  .loginInput >.ant-input:hover{
+    /* border: none; */
+    /* outline:0; */
+    /* border-right-color: rgb(255, 255, 255);
     border-bottom-width: 1px;
-  } */
-  .loginInput-icon{
-    margin-top: 50px;
-    margin-left: 87px
+    border-bottom-color: black */
   }
 </style>
