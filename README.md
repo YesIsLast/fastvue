@@ -12,6 +12,7 @@
     eslint  如果想取消eslint只需要将eslint配置文件.eslintrc.js中注释掉或删掉 '@vue/standard'
     vue-progressbar VUE顶部加载轻量级动画https://github.com/hilongjw/vue-progressbar    npm install vue-progressbar
     阿里Ant Design Vue UI组件库1.3.10           npm install ant-design-vue --save
+    store 2.0.12 浏览器存储 npm install store --save
 ## VSCode开发工具使用
     git 的使用
     提交更改过的文件只需要对号+输入更改备注信息就可以
