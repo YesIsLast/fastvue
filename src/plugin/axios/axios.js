@@ -3,15 +3,17 @@ import axios from 'axios' // AJAX请求插件
  * 存储有关axios的请求配置
  */
 
-// 创建一个AXIOS实例的常量，禁止发生改变
+ // 默认请求地址
 
+const AJAXbaseURL = 'http://localhost:8001/api';// 默认请求地址
+// 创建一个AXIOS实例的常量，禁止发生改变
 // Set config defaults when creating the instance
 // 创建自定义axios实例
-const request = axios.create({
+const axiosRequest = axios.create({
     // `baseURL` will be prepended to `url` unless `url` is absolute.
     // It can be convenient to set `baseURL` for an instance of axios to pass relative URLs
     // to methods of that instance.
-    baseURL: '/api',// 默认请求地址
+    baseURL: AJAXbaseURL,// 默认请求地址
     // `timeout` specifies the number of milliseconds before the request times out.
     // If the request takes longer than `timeout`, the request will be aborted.
     timeout: 1000, // default is `0` (no timeout)
@@ -25,7 +27,7 @@ const request = axios.create({
 
 // Add a request interceptor
 // 请求拦截器
-request.interceptors.request.use(function (config) {
+axiosRequest.interceptors.request.use(function (config) {
     // Do something before request is sent
     config.headers['Content-Type'] = 'application/json'
     config.headers['Access-Control-Allow-Origin'] = '*'
@@ -38,7 +40,7 @@ request.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 // 响应拦截器
-request.interceptors.response.use(function (response) {
+axiosRequest.interceptors.response.use(function (response) {
     // Do something with response data
     return response;
 }, function (error) {
@@ -47,24 +49,26 @@ request.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-export default request
-//     {
-//     install: function (Vue) {
-//         Vue.prototype.$request = request;
-//         // 封装get请求
-//         Vue.prototype.$get = function (url, param) {
-//             if (typeof param === 'object' && param != undefined) {
-//                 let config = { method: 'get', url: url, params: param }
-//                 return this.$request(config);
-//             } else {
-//                 let config = { method: 'get', url: url }
-//                 return this.$request(config);
-//             }
-//         }
-//         // 封装post请求
-//         Vue.prototype.$post = function (url, param) {
-//             let config = { method: 'post', url: url, data: param }
-//             return this.$request(config)
-//         }
-//     }
-// }
+export default {
+    install: function (Vue) {
+        Vue.prototype.$request = function (config) {
+            return axiosRequest.request(config)
+        }
+        // 封装get请求
+        Vue.prototype.$get = function (url, param) {
+            if (typeof param === 'object' && param != undefined) {
+                let config = { method: 'get', url: url, params: param }
+                return this.$request(config);
+            } else {
+                let config = { method: 'get', url: url }
+                return this.$request(config);
+            }
+        }
+        // 封装post请求
+        Vue.prototype.$post = function (url, param) {
+            let config = { method: 'post', url: url, data: param }
+            console.log(config)
+            return this.$request(config)
+        }
+    }
+}

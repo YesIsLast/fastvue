@@ -1,10 +1,9 @@
 module.exports = {
-    // lintOnSave:false,
     // devServer: {
     //     proxy: {
     //         '/api': {
-    //             target: 'http:baidu.com',
-    //             ws: true,
+    //             target: 'http://localhost:8001', // mxy
+    //             // ws: true,
     //             changeOrigin: true
     //         }
     //     }

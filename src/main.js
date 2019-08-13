@@ -7,8 +7,9 @@ import store from './store' // 全局状态管理库
 import Components from './components/index' // 公用组件封装库
 import Antd from 'ant-design-vue' // 引入组件库
 import 'ant-design-vue/dist/antd.css'
-import "./plugin/mock/index"; // 引入mockjs模拟接口
+// import "./plugin/mock/index"; // 引入mockjs模拟接口
 import axios from 'axios' // ajax请求插件
+import Request from './plugin/axios/axios' // 请求封装
 
 /**VUE全局配置 */
 // 设置为 false 以阻止 vue 在启动时生成生产提示。
@@ -23,7 +24,8 @@ Vue.use(VueProgressBar, VueProgressBarOption)
 Vue.use(Antd)
 // 注册组件
 Vue.use(Components)
-
+// 请求封装
+Vue.use(Request)
 // 添加实例方法, 使用基于Promise的HTTP请求插件
 Vue.prototype.axios = axios;
 

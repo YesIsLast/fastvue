@@ -1,7 +1,7 @@
 <template>
     <div class="app-login">
         <!-- logo -->
-        <div class="logo">
+        <div class="login-logo">
             <img src="../../assets/images/login-logo.png" class="logo-icon" />
             <span class="logo-icon-name">FastVue后台管理框架</span>
         </div>
@@ -33,6 +33,7 @@
                         v-model="loginForm.passWord"
                         class="loginInput"
                         size="large"
+                        @keyup.enter="loginBtn"
                     >
                         <a-icon slot="prefix" type="lock" class="loginInput-icon" />
                         <!-- <a-icon v-if="loginForm.passWord" slot="suffix" type="close-circle"/> -->
@@ -47,11 +48,30 @@
     </div>
 </template>
 <script>
-import service from "../../service/login/index";
-
 export default {
+    name: "login",
+    watch: {
+        "loginForm.userName"() {
+            let _val = this.loginForm.userName;
+            if (_val != "") {
+                this.loginDecoratorName = true;
+            } else {
+                this.loginDecoratorName = false;
+            }
+        },
+        "loginForm.passWord"() {
+            let _val = this.loginForm.passWord;
+            if (_val != "") {
+                this.loginDecoratorPass = true;
+            } else {
+                this.loginDecoratorPass = false;
+            }
+        }
+    },
     data() {
         return {
+            loginDecoratorName: false,
+            loginDecoratorPass: false,
             loginForm: {
                 userName: "",
                 passWord: "",
@@ -62,16 +82,29 @@ export default {
     methods: {
         // 登录
         loginBtn() {
-            this.loginForm.loginStatus = true;
-            setTimeout(fun => {
-                // 个人信息状态库与浏览器存储
-                this.$store.commit("FASTVUE_USER_INFO", this.loginForm);
-                // 登录成功路径跳转
-                this.$router.push({ path: "/homePage" });
-                // this.$router.push({name: "demo"})
-                this.loginForm.loginStatus = false;
-                console.log(this.loginForm);
-            }, 1000);
+            if (!this.loginDecoratorName || !this.loginDecoratorPass) {
+                return;
+            } else {
+                let url = "/login/loginToken";
+                let params = {
+                    exampleusername: "admin",
+                    examplepassword: "1"
+                };
+                this.$post(url, params).then(res => {
+                    console.log(res);
+                });
+
+                this.loginForm.loginStatus = true;
+                setTimeout(fun => {
+                    // 个人信息状态库与浏览器存储
+                    this.$store.commit("FASTVUE_USER_INFO", this.loginForm);
+                    // 登录成功路径跳转
+                    this.$router.push({ path: "/homePage" });
+                    // this.$router.push({name: "demo"})
+                    this.loginForm.loginStatus = false;
+                    console.log(this.loginForm);
+                }, 1000);
+            }
         }
     }
 };
@@ -85,17 +118,17 @@ export default {
     background-repeat: no-repeat;
     background-size: 50% 80%;
 }
-.app-login .logo {
+.app-login .login-logo {
     position: absolute;
     left: 28px;
     height: 60px;
 }
-.app-login .logo .logo-icon {
+.app-login .login-logo .logo-icon {
     margin-right: 29px;
     height: 60px;
     width: 60px;
 }
-.app-login .logo .logo-icon-name {
+.app-login .login-logo .logo-icon-name {
     position: relative;
     font-family: Cursive;
     font-size: xx-large;
