@@ -48,7 +48,7 @@ const routes = [
     children: [
       {
         path: '/',
-        redirect: '/login' // 默认配置成重定向登录页
+        redirect: '/404' // 默认配置成重定向登录页
       },
       {
         path: '/homePage',

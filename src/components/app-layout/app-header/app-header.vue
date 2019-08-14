@@ -1,8 +1,5 @@
 <template>
     <a-layout-header id="layout-header">
-        <router-link to="demo">
-            <a-button type="primary">进入功能点demo测试页面</a-button>
-        </router-link>
         <div class="layoutHead-content">
             <a class="layoutHead-content-time">上次登录时间:2019/08/13</a>
             <a class="layoutHead-content-ip">上次登录IP:127.0.0.0</a>
@@ -26,9 +23,9 @@
                 <template slot="title">
                     <span>退出</span>
                 </template>
-                <router-link to="login">
-                    <a-icon type="poweroff" class="layoutHead-content-poweroff" />
-                </router-link>
+                <a>
+                    <a-icon type="poweroff" class="layoutHead-content-poweroff" @click="logout" />
+                </a>
             </a-tooltip>
         </div>
     </a-layout-header>
