@@ -1,5 +1,6 @@
 # fastvue
 快速构建vue的后台管理系统框架
+## 项目纯净版地址 https://github.com/YesIsLast/fast-vue-system
 ## 项目启动步骤
 ### 下载项目git clone git@github.com:YesIsLast/fastvue.git
 ### 安装项目依赖 npm install
