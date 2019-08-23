@@ -47,7 +47,16 @@
                     <a-icon type="team" />角色管理
                 </a-menu-item>
             </a-sub-menu>
-            <a-menu-item key="9" @click.capture="DoubleMenuBack">
+            <a-sub-menu key="sub4">
+                <span slot="title">
+                    <a-icon type="setting" />
+                    <span>前端面试</span>
+                </span>
+                <a-menu-item key="9" @click="clickMenu('main/web_primary')">
+                    <a-icon type="user" />初级web前端
+                </a-menu-item>
+            </a-sub-menu>
+            <a-menu-item key="10" @click.capture="DoubleMenuBack">
                 <div @click="clickMenu('demo')">
                     <span>进入功能点demo测试页面</span>
                 </div>

@@ -14,6 +14,7 @@ import main from './views/main.vue'
 import firstMenuFirstChildComponent from './views/firstmenuComponent/firstMenuFirstChildComponent/firstMenuFirstChildComponent.vue'
 import Page_404 from './views/ERR_Pages/Page_404.vue'
 import demoPage from './views/Demo/demo.vue'
+import web_primary from './views/web_interview/web_primary.vue'
 
 // 全局注册vue-router
 Vue.use(VueRouter)
@@ -54,6 +55,12 @@ const routes = [
         path: '/homePage',
         name: 'homepage',
         component: homepage,
+      },
+      {
+        path: 'web_primary',
+        name: 'web_primary',
+        meta: { title: '初级web前端' },
+        component: web_primary
       },
       // 当 /main/firstmenuComponent 匹配成功，
       // firstmenuComponent 会被渲染在 main 的 <router-view> 中
