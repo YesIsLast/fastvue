@@ -14,7 +14,8 @@
                 />
             </div>
             <div class="login-content-right">
-                <div class="login-content-right-welcome">欢迎登录</div>
+                <!-- 使用集成的CSS动画插件库，实现一秒后执行动画效果，由上而下进入页面 -->
+                <div class="login-content-right-welcome animated bounceInDown delay-1s">欢迎登录</div>
                 <div class="login-form">
                     <a-input
                         type="text"

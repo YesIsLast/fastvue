@@ -14,6 +14,7 @@
     vue-progressbar VUE顶部加载轻量级动画https://github.com/hilongjw/vue-progressbar    npm install vue-progressbar
     阿里Ant Design Vue UI组件库1.3.10           npm install ant-design-vue --save
     store 2.0.12 浏览器存储 npm install store --save
+    animate 3.7.2 动画效果插件 npm install animate.css --save
 ## VSCode开发工具使用
     git 的使用
     提交更改过的文件只需要对号+输入更改备注信息就可以
@@ -33,3 +34,11 @@
 ### 页面布局
     使用ant中的常用布局，在项目中进行拆分成组件使用，内容区通过vue的router-view来显示，使用路由来控制页面变化，
     同时对已完成的进度条插件进行封装组件管理。
+## CSS3动画效果
+    插件使用npm命令进行安装，此插件官方地址为：https://daneden.github.io/animate.css/
+    集成步骤分三步
+    1、npm安装插件 npm install animate.css --save
+    2、将插件在main.js中引入VUE项目
+    3、在页面中通过class="animated bounceInDown"使用，如此标签还有自定义类名样式，
+       将class="xx自定义类名xx animated bounceInDown"放在其中即可
+    所有效果均在官网有所介绍和演示，可根据官方提供的样式名来为自己的网站添加动画效果

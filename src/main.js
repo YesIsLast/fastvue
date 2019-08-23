@@ -10,6 +10,7 @@ import 'ant-design-vue/dist/antd.css'
 // import "./plugin/mock/index"; // 引入mockjs模拟接口
 import axios from 'axios' // ajax请求插件
 import Request from './plugin/axios/axios' // 请求封装
+import animate from 'animate.css' // 引入CSS动画animate插件库
 
 /**VUE全局配置 */
 // 设置为 false 以阻止 vue 在启动时生成生产提示。
@@ -22,6 +23,8 @@ Vue.config.keyCodes = {
 Vue.use(VueProgressBar, VueProgressBarOption)
 // 组件库
 Vue.use(Antd)
+// CSS动画库
+Vue.use(animate)
 // 注册组件
 Vue.use(Components)
 // 请求封装
